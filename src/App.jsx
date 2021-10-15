@@ -1,9 +1,33 @@
 import React from 'react';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
-  const [location, setLocation] = useState('Mumbai');
+  const [location, setLocation] = useState('');
+  const [search, setSearch] = useState('');
+  const [result, setResult] = useState();
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=d360f69d6ce664325674bb8d30e62124`
+      const res = await fetch(url);
+      console.log(res);
+      const data = await res.json();
+      setResult(data)
+      console.log(data)
+      console.log(result);
+    };
+    fetchData();
+  }, [search])
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSearch(location);
+    setLocation('');
+
+  }
+
 
   return (
     <div className="app">
@@ -12,12 +36,14 @@ function App() {
       <div className="search_div">
         <div className="search_left">
           <div>
-            <input type="text"
-              className="search_input"
-              placeholder="Search for location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)} />
-            <button className="search_btn"><i className="fas fa-search"></i></button>
+            <form onSubmit={(e) => handleSubmit(e)}>
+              <input type="text"
+                className="search_input"
+                placeholder="Search for location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)} />
+              <button type="submit" className="search_btn"><i className="fas fa-search"></i></button>
+            </form>
           </div>
           <div><h3>{location}</h3></div>
 
