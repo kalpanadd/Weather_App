@@ -2,21 +2,27 @@ import React from 'react';
 import './App.css';
 import { useState, useEffect } from 'react';
 
+import CurrentWeather from './COMPONENTS/CurrentWeather';
+
 function App() {
   const [location, setLocation] = useState('');
-  const [search, setSearch] = useState('');
-  const [result, setResult] = useState();
-
+  const [search, setSearch] = useState('delhi');
+  const [result, setResult] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=d360f69d6ce664325674bb8d30e62124`
-      const res = await fetch(url);
-      console.log(res);
-      const data = await res.json();
-      setResult(data)
-      console.log(data)
-      console.log(result);
+      try {
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${search}&appid=d360f69d6ce664325674bb8d30e62124`
+        const res = await fetch(url);
+        console.log(res);
+        const data = await res.json();
+        setResult(data)
+        console.log(data)
+        console.log(result);
+      } catch {
+        console.log('error');
+      }
+
     };
     fetchData();
   }, [search])
@@ -53,7 +59,7 @@ function App() {
           <button className="temp_btn">&#8451;</button>
         </div>
       </div>
-
+      {result && <CurrentWeather result={result} />}
     </div>
   )
 }
