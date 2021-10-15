@@ -1,28 +1,35 @@
-import { useState } from 'react';
+import React from 'react';
 import './App.css';
-import Search_location from './COMPONENTS/Search/Search_location'
-import Current_Weather from './COMPONENTS/Current_weather/Current_Weather';
+import { useState } from 'react';
 
 function App() {
-
-  const [location, setLocation] = useState('');
-  const [search, setSearch] = useState('');
-
-  const fetchdata = async () => {
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=d360f69d6ce664325674bb8d30e62124`
-    const res = await fetch(url)
-    const response = await res.json();
-    console.log(response)
-  }
-  fetchdata()
-
+  const [location, setLocation] = useState('Mumbai');
 
   return (
     <div className="app">
-      <Search_location />
-      <Current_Weather />
-    </div >
-  );
+      <h1>know your Weather</h1>
+
+      <div className="search_div">
+        <div className="search_left">
+          <div>
+            <input type="text"
+              className="search_input"
+              placeholder="Search for location"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)} />
+            <button className="search_btn"><i className="fas fa-search"></i></button>
+          </div>
+          <div><h3>{location}</h3></div>
+
+        </div>
+        <div className="search_right">
+          <button className="temp_btn">&#8457;</button>
+          <button className="temp_btn">&#8451;</button>
+        </div>
+      </div>
+
+    </div>
+  )
 }
 
-export default App;
+export default App
