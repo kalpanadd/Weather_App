@@ -3,27 +3,30 @@ import './App.css';
 import { useState } from 'react';
 
 import Search from './COMPONENTS/Search/Search';
-
-
-import { getCurrentWeather } from './API/openweathermap'
 import CurrentWeather from './COMPONENTS/CurrentWeather/CurrentWeather';
+import ForeCastWeather from './COMPONENTS/ForecastWeather/Forecast'
+
+import { getCurrentWeather, getForecastWeather } from './API/openweathermap'
 function App() {
 
   const [location, setLocation] = useState('');
   const [result, setResult] = useState(null);
+  const [forecastdata, setForecastData] = useState([]);
 
-  // const [lat, setLat] = useState()
-  // const [long, setLong] = useState()
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    getCurrentWeather(location).then((res) => {
-      setResult(res.data)
-      console.log(result)
-    });
-
-
+    const response = await getCurrentWeather(location);
+    const lati = response.data.coord.lat;
+    const longi = response.data.coord.lon;
+    const forecastResult = await getForecastWeather(lati, longi);
+    setResult(response.data);
+    setForecastData(forecastResult.data.hourly)
+    console.log(result);
+    console.log(forecastdata);
   }
+
+
 
   function handleChange(e) {
     setLocation(e.target.value);
@@ -41,6 +44,8 @@ function App() {
         description={result.weather[0].description}
         icon={result.weather[0].icon}
       />}
+
+      <ForeCastWeather forecast={forecastdata} />
     </div>
   )
 }
