@@ -6,12 +6,28 @@ import Search from './COMPONENTS/Search/Search';
 import CurrentWeather from './COMPONENTS/CurrentWeather/CurrentWeather';
 import ForeCastWeather from './COMPONENTS/ForecastWeather/Forecast'
 
-import { getCurrentWeather, getForecastWeather } from './API/openweathermap'
+import { getCurrentWeather, getForecastWeather, liveLocation } from './API/openweathermap'
+
+import GeoLocation from './GeoLocation_CustomHook/GeoLocation';
+import { useEffect } from 'react';
+
+
 function App() {
 
   const [location, setLocation] = useState('');
   const [result, setResult] = useState(null);
   const [forecastdata, setForecastData] = useState([]);
+  const coordinates = GeoLocation()
+
+  useEffect(async () => {
+    console.log(coordinates.coordinates.lat, coordinates.coordinates.lng)
+    const res = await liveLocation(coordinates.coordinates.lat, coordinates.coordinates.lng)
+    setResult(res.data);
+    console.log("result is: " + result)
+    const forecastResult = await getForecastWeather(coordinates.coordinates.lat, coordinates.coordinates.lng);
+    setForecastData(forecastResult.data.hourly)
+
+  }, [coordinates])
 
 
   async function handleSubmit(e) {
@@ -44,7 +60,7 @@ function App() {
         description={result.weather[0].description}
         icon={result.weather[0].icon}
       />}
-
+      {coordinates.loaded ? JSON.stringify(coordinates) : "not"}
       <ForeCastWeather forecast={forecastdata} />
     </div>
   )
