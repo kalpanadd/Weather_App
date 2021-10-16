@@ -1,10 +1,11 @@
 import React from "react";
 import './Forecast.css';
+import OutlinedCard from './Card';
 import Carousel from 'react-elastic-carousel';
 
 class Forecast extends React.Component {
     breakPoints = [
-        { width: 1, itemsToShow: 5 },
+        { width: 1, itemsToShow: 1 },
         { width: 500, itemsToShow: 2 },
         { width: 768, itemsToShow: 3 },
         { width: 1200, itemsToShow: 4 },
@@ -29,26 +30,23 @@ class Forecast extends React.Component {
             }
 
             return (
-                <div className='forecast_div'>
-                    <div className='forecast_card'>
-                        <img className="forecast-item__img" src={image.url} alt={image.alt} />
-                        <p className="forecast-item__time">{hour} {ampm}</p>
-                        <p className="forecast-item__temp">
-                            {f.temp} <span className="forecast-item__degree">&#8451;</span>
-                        </p>
-                        <div>
-                            <p className="forecast-item__description">{description}</p>
-                            <p>FEELS LIKE:{feels_like}&#8451;</p>
-                        </div>
-                    </div>
+                <OutlinedCard
+                    temp={f.temp}
+                    url={image.url}
+                    alt={image.alt}
+                    hour={hour}
+                    ampm={ampm}
+                    feels_like={feels_like}
+                    description={description}
 
-                </div>
+
+
+                />
             );
         });
 
         return (
             <div className="forecast ">
-
                 {this.props.f && <h3 className="forecast__title">Hourly Forecast</h3>}
                 <Carousel breakPoints={this.breakPoints}>
                     {items}

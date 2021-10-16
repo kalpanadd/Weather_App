@@ -9,9 +9,9 @@ a{
 }
 .app{
     scrollbar-width: thin;
-    background-image: url('./Images/background.jpg');
+    /* background-image: url('./Images/background.jpg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; */
 
 }
