@@ -1,7 +1,22 @@
 .current_weather{
-    width: 100vw;
+    width: 50vw;
     height: 30vh;
-    background-color: blanchedalmond;
-    margin: 10px;
+    background-color: rgb(187, 180, 168);
+    margin-top: 80px;
     padding: 30px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 30px rgb(255, 94, 0);
+    
+}
+.temp_content{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+.temp_details{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }

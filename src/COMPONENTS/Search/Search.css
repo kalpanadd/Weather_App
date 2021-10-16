@@ -21,6 +21,7 @@
     outline: none;
     border-radius: 15px 0px 0px 15px;
     width: 88%;
+    font-size: medium;
 }
 .search_btn{
     padding: 15px;
@@ -28,6 +29,7 @@
     outline: none;
     border-radius: 0px 15px 15px 0px;
     cursor: pointer;
+    font-size: medium;
 
 }
 .search_right{
@@ -35,6 +37,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
 }
 .temp_btn{
     padding: 15px;
@@ -43,4 +46,7 @@
     border-radius: 10px;
     box-shadow: 10px 5px 55px rgb(255, 94, 0);
     cursor: pointer;
+    font-size: medium;
+
+
 }

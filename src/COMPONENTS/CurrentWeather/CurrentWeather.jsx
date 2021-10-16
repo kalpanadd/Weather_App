@@ -1,27 +1,25 @@
 import React from 'react';
 import './CurrentWeather.css';
 
-function CurrentWeather({ result }) {
-    // console.log(props);
+function CurrentWeather({ name, feels_like, humidity, temp, temp_max, temp_min, icon, description }) {
+    let img_url = `http://openweathermap.org/img/wn/${icon}@2x.png`
     return (
         <div className='current_weather'>
-            <h1>CURRENT WEATHER</h1>
-            <span>{result.name}</span>
+            <h3>current weather</h3>
 
             <div>
-                <h1>{result.main.temp}</h1>
-                <p>{result.main.temp_min}</p>
-                <p>{result.main.temp_max}</p>
+                <h1>{name}</h1>
+                <div className="temp_content">
+                    <h1>{temp}&#8451;</h1>
+                    <h2>{description}</h2>
+                    <img src={img_url} alt="clouds image" />
 
-                <h3>Haze</h3>
-                <h3>feels like 25</h3>
-            </div>
-            <div>
-                <div>air quality</div>
-                <div>wind</div>
-                <div>{result.main.feels_like}</div>
-                <div>{result.main.humidity}</div>
-                <div>{result.main.pressure}</div>
+                </div>
+                <div className="temp_details">
+                    <h4>{"Feels like: " + feels_like}&#8451;</h4>
+                    <h4>{"Humidity: " + humidity}&#8451;</h4>
+                    <h5>{"Min temp: " + temp_min}&#8451;</h5>
+                </div>
 
             </div>
 
