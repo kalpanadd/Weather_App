@@ -1,9 +1,16 @@
-
 import React from "react";
 import './Forecast.css';
-
+import Carousel from 'react-elastic-carousel';
 
 class Forecast extends React.Component {
+    breakPoints = [
+        { width: 1, itemsToShow: 5 },
+        { width: 500, itemsToShow: 2 },
+        { width: 768, itemsToShow: 3 },
+        { width: 1200, itemsToShow: 4 },
+
+    ]
+
     render() {
         const items = this.props.forecast.map((f, i) => {
             const image = {
@@ -22,17 +29,6 @@ class Forecast extends React.Component {
             }
 
             return (
-                // <div key={i} className="forecast-item">
-                //     <p className="forecast-item__time">{hour} {ampm}</p>
-                //     <p className="forecast-item__temp">
-                //         {f.temp} <span className="forecast-item__degree">°</span>
-                //     </p>
-                //     <img className="forecast-item__img" src={image.url} alt={image.alt} />
-                //     <p className="forecast-item__description">{description}</p>
-                // </div>
-
-
-
                 <div className='forecast_div'>
                     <div className='forecast_card'>
                         <img className="forecast-item__img" src={image.url} alt={image.alt} />
@@ -51,9 +47,12 @@ class Forecast extends React.Component {
         });
 
         return (
-            <div className="forecast">
+            <div className="forecast ">
+
                 {this.props.f && <h3 className="forecast__title">Hourly Forecast</h3>}
-                <div className="forecast-items">{items}</div>
+                <Carousel breakPoints={this.breakPoints}>
+                    {items}
+                </Carousel>
             </div>
         );
     }
