@@ -16,7 +16,7 @@ function Search({ location, handleChange, handleSubmit }) {
                         <button type="submit" className="search_btn"><i className="fas fa-search"></i></button>
                     </form>
                 </div>
-                <div><h3>{location}</h3></div>
+                <div><h3 style={{ color: 'wheat' }}>{location}</h3></div>
 
             </div>
             <div className="search_right">

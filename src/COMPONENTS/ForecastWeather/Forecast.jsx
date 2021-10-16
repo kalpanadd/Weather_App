@@ -34,7 +34,7 @@ class Forecast extends React.Component {
 
         return (
             <div className="forecast">
-                <h3 className="forecast__title">Hourly Forecast</h3>
+                {this.props.f && <h3 className="forecast__title">Hourly Forecast</h3>}
                 <div className="forecast-items">{items}</div>
             </div>
         );
