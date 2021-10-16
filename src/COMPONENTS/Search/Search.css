@@ -3,6 +3,7 @@
     height: 10%;
     display: flex;
     align-items: center;
+    background-color: rgb(191, 218, 209);
 }
 .search_left{
     flex: 0.8;

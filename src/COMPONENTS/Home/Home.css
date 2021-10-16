@@ -1,0 +1,41 @@
+.home_bg{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../Images/background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: whitesmoke;
+}
+.home_btn{
+    padding: 10px;
+    width: 100px;
+    color: black;
+    font-size: medium;
+    width: 150px;
+    border-radius: 5px;
+    border: none;
+
+}
+.home_btn:hover{
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.299);
+
+}
+
+@media screen and (min-width: 601px) {
+    .home_bg {
+        font-size: 30px;
+      }
+  }
+  
+  /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+  @media screen and (max-width: 600px) {
+    .home_bg {
+      font-size: 30px;
+    }
+  }

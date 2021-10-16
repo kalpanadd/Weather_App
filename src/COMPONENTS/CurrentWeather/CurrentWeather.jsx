@@ -12,7 +12,7 @@ function CurrentWeather({ name, feels_like, humidity, temp, temp_max, temp_min, 
                 <div className="temp_content">
                     <h1>{temp}&#8451;</h1>
                     <h2>{description}</h2>
-                    <img src={img_url} alt="clouds image" />
+                    <img src={img_url} alt="clouds" />
 
                 </div>
                 <div className="temp_details">
