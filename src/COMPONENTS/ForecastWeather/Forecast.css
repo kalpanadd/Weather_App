@@ -12,7 +12,7 @@
 } */
 .forecast-item{
     width: 100vw;
-    height: 10vh;
+    height: 40vh;
     background-color: rgb(62, 55, 43);
     box-shadow: 5px 5px 30px rgb(255, 94, 0);
     color: wheat;

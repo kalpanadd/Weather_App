@@ -1,5 +1,6 @@
 import React from 'react';
 import './Search.css';
+import Grid from '@material-ui/core/Grid';
 
 function Search({ location, handleChange, handleSubmit }) {
 
@@ -18,7 +19,10 @@ function Search({ location, handleChange, handleSubmit }) {
                 </div>
                 <div><h3 style={{ color: 'wheat' }}>{location}</h3></div>
 
+
             </div>
+
+
             <div className="search_right">
                 <button className="temp_btn">&#8457;</button>
                 <button className="temp_btn">&#8451;</button>
