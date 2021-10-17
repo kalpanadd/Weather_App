@@ -48,7 +48,7 @@
     border:none;
     outline: none;
     border-radius: 10px;
-    box-shadow: 10px -5px 55px rgb(255, 60, 0);
+    box-shadow: 20px -10px 50px rgb(235, 14, 14) ;
     cursor: pointer;
     font-size: medium;
 }

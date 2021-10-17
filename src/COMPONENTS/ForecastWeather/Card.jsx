@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
-        backgroundColor: "blue",
+        backgroundColor: "whitesmoke",
         boxShadow: "10px 10px 55px white",
         borderRadius: "8px"
     },
@@ -26,30 +26,30 @@ const useStyles = makeStyles({
     },
 });
 
-export default function OutlinedCard({ temp, url, alt, ampm, feels_like, hour, description }) {
+export default function OutlinedCard({ temp, url, alt, ampm, feels_like, hour, description, units }) {
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
 
     return (
         <Card className={classes.root} variant="outlined">
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    <img src={url} alt={alt} />
+                <Typography className={classes.title} gutterBottom>
+                    <h4>{temp}{units === "metric" ? '℃' : '℉'}</h4>
+
                 </Typography>
                 <Typography variant="h5" component="h2">
                     {hour}{ampm}
+                    <img src={url} alt={alt} />
+
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                    {temp}&#8451;
+                    FEELS LIKE:{feels_like}{units === "metric" ? '℃' : '℉'}
                 </Typography>
                 <Typography variant="body2" component="p">
-                    {description}
-                    <br />
+                    <h5>{description}</h5>
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">FEELS LIKE:{feels_like}&#8451;</Button>
-            </CardActions>
+
         </Card>
     );
 }

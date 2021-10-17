@@ -38,7 +38,7 @@ class Forecast extends React.Component {
                     ampm={ampm}
                     feels_like={feels_like}
                     description={description}
-
+                    units={this.props.units}
 
 
                 />

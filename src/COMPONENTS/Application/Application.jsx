@@ -86,7 +86,7 @@ function Application() {
                 units={units}
             />}
             {coordinates.loaded ? JSON.stringify(coordinates) : "not"}
-            <ForeCastWeather forecast={forecastdata} />
+            <ForeCastWeather forecast={forecastdata} units={units} />
         </div>
     )
 }
