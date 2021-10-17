@@ -91,7 +91,7 @@ function Application() {
                 units={units}
             />}
             {coordinates.loaded ? "" : <h2>Needs to Access your Location</h2>}
-            {coordinates.error ? <h3>Denied access for Location</h3> : ""}
+            {coordinates.error ? <h3>Denied access for Location.</h3> : ""}
             <ForeCastWeather forecast={forecastdata} units={units} />
         </div>
     )
