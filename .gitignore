@@ -4,8 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-/API_keys_gelolocation/apikeys.js
-
 # testing
 /coverage
 

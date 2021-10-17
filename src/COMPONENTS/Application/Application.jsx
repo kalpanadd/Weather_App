@@ -8,34 +8,37 @@ import ForeCastWeather from '../ForecastWeather/Forecast'
 import { getCurrentWeather, getForecastWeather, liveLocation } from '../../API/openweathermap'
 import GeoLocation from '../../GeoLocation_CustomHook/GeoLocation';
 
+
+
 function Application() {
     const [location, setLocation] = useState('');
     const [result, setResult] = useState(null);
     const [forecastdata, setForecastData] = useState([]);
-    const coordinates = GeoLocation();
     const [units, setUnits] = useState("metric");
+    const coordinates = GeoLocation();
 
 
     useEffect(async () => {
+
         if (coordinates.coordinates) {
             console.log(coordinates.coordinates.lat, coordinates.coordinates.lng)
-            const res = await liveLocation(coordinates.coordinates.lat, coordinates.coordinates.lng, units)
+            const res = await liveLocation(process.env.REACT_APP_BASE_URL, coordinates.coordinates.lat, coordinates.coordinates.lng, process.env.REACT_APP_API_KEY, units)
             setResult(res.data);
             console.log("current weather:" + result)
-            const forecastResult = await getForecastWeather(coordinates.coordinates.lat, coordinates.coordinates.lng, units);
+            const forecastResult = await getForecastWeather(process.env.REACT_APP_BASE_URL, coordinates.coordinates.lat, coordinates.coordinates.lng, process.env.REACT_APP_API_KEY, units);
             setForecastData(forecastResult.data.hourly)
             console.log("forecast " + forecastdata)
         }
 
-    }, [coordinates, units])
+    }, [coordinates.coordinates, units])
 
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await getCurrentWeather(location, units);
+        const response = await getCurrentWeather(process.env.REACT_APP_BASE_URL, location, process.env.REACT_APP_API_KEY, units, units);
         const lati = response.data.coord.lat;
         const longi = response.data.coord.lon;
-        const forecastResult = await getForecastWeather(lati, longi, units);
+        const forecastResult = await getForecastWeather(process.env.REACT_APP_BASE_URL, lati, longi, process.env.REACT_APP_API_KEY, units, units);
         setResult(response.data);
         setForecastData(forecastResult.data.hourly)
         console.log("current weather:" + result);

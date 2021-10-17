@@ -1,9 +1,7 @@
 import React from 'react';
 import './CurrentWeather.css';
 import { Card } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 function CurrentWeather({ name, feels_like, humidity, temp, temp_max, temp_min, icon, description, pressure, visibility, windspeed, units }) {
-    const [modalShow, setModalShow] = React.useState(false);
 
 
 
