@@ -1,9 +1,9 @@
 import axios from "axios";
 
-// const API_KEY = d360f69d6ce664325674bb8d30e62124;
-
+// console.log(process.env.REACT_APP_API_KEY);
+// console.log(process.env.REACT_APP_BASE_URL);
 function getCurrentWeather(location, unit) {
-    return axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=d360f69d6ce664325674bb8d30e62124&units=${unit}`)
+    return axios.get(`${process.env.REACT_APP_BASE_URL}}weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}&units=${unit}`)
 
 }
 
