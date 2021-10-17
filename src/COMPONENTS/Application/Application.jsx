@@ -12,18 +12,21 @@ function Application() {
     const [location, setLocation] = useState('');
     const [result, setResult] = useState(null);
     const [forecastdata, setForecastData] = useState([]);
-    const coordinates = GeoLocation()
+    const coordinates = GeoLocation();
+    const [units, setUnits] = useState("metric");
+
 
     useEffect(async () => {
+
         console.log(coordinates.coordinates.lat, coordinates.coordinates.lng)
-        const res = await liveLocation(coordinates.coordinates.lat, coordinates.coordinates.lng)
+        const res = await liveLocation(coordinates.coordinates.lat, coordinates.coordinates.lng, units)
         setResult(res.data);
         console.log("current weather:" + result)
-        const forecastResult = await getForecastWeather(coordinates.coordinates.lat, coordinates.coordinates.lng);
+        const forecastResult = await getForecastWeather(coordinates.coordinates.lat, coordinates.coordinates.lng, units);
         setForecastData(forecastResult.data.hourly)
         console.log("forecast " + forecastdata)
 
-    }, [coordinates])
+    }, [coordinates, units])
 
 
     async function handleSubmit(e) {
@@ -39,13 +42,36 @@ function Application() {
     }
 
 
-
     function handleChange(e) {
         setLocation(e.target.value);
     }
+
+    function handleFarah(e) {
+        console.log(e);
+        if (e.target.id === 'faranheit')
+            setUnits('imperial')
+        console.log(units)
+
+
+    }
+
+    function handleCelci(e) {
+        if (e.target.id === 'celcius')
+            setUnits('metric')
+        console.log(units)
+
+        console.log(units)
+
+    }
     return (
         <div className="application">
-            <Search location={location} handleChange={(e) => handleChange(e)} handleSubmit={(e) => handleSubmit(e)} />
+            <Search location={location}
+                handleChange={(e) => handleChange(e)}
+                handleSubmit={(e) => handleSubmit(e)}
+                handleFarah={(e) => handleFarah(e)}
+                handleCelci={(e) => handleCelci(e)}
+            />
+
             {result && <CurrentWeather name={result.name}
                 temp={result.main.temp}
                 feels_like={result.main.feels_like}
@@ -57,6 +83,7 @@ function Application() {
                 pressure={result.main.pressure}
                 visibility={result.visibility}
                 windspeed={result.wind.speed}
+                units={units}
             />}
             {coordinates.loaded ? JSON.stringify(coordinates) : "not"}
             <ForeCastWeather forecast={forecastdata} />

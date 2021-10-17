@@ -1,8 +1,7 @@
 import React from 'react';
 import './Search.css';
-import Grid from '@material-ui/core/Grid';
 
-function Search({ location, handleChange, handleSubmit }) {
+function Search({ location, handleChange, handleSubmit, handleFarah, handleCelci }) {
 
     return (
         <div className="search_div">
@@ -24,8 +23,8 @@ function Search({ location, handleChange, handleSubmit }) {
 
 
             <div className="search_right">
-                <button className="temp_btn">&#8457;</button>
-                <button className="temp_btn">&#8451;</button>
+                <button id="faranheit" className="temp_btn" onClick={(e) => handleFarah(e)}>&#8457;</button>
+                <button id="celcius" className="temp_btn" onClick={(e) => handleCelci(e)}>&#8451;</button>
             </div>
         </div>
     )

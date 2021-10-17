@@ -1,16 +1,16 @@
 .current_weather{
     width: 100vw;
     height: 50%;
-    color: wheat;
+    color:black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: beige;
     
 }
-.current_details{
-    width: 50%;
-    height: 70%;
+    .current_details{
+        width: 40vw;
     background-color: whitesmoke;
     border-radius: 10px;
     box-shadow: 20px 20px 50px black;
@@ -20,8 +20,8 @@
     align-items: center;
     justify-content: space-evenly;
 
-}
-.current_main_content{
+} 
+/*.current_main_content{
     display: flex;
     width: 100%;
     align-items: center;
@@ -39,4 +39,4 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-}
+} */
