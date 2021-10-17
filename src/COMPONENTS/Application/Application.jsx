@@ -40,6 +40,7 @@ function Application() {
         setForecastData(forecastResult.data.hourly)
         console.log("current weather:" + result);
         console.log("forecast " + forecastdata);
+        setLocation("")
     }
 
 
