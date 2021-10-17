@@ -17,24 +17,25 @@ function Application() {
 
 
     useEffect(async () => {
-
-        console.log(coordinates.coordinates.lat, coordinates.coordinates.lng)
-        const res = await liveLocation(coordinates.coordinates.lat, coordinates.coordinates.lng, units)
-        setResult(res.data);
-        console.log("current weather:" + result)
-        const forecastResult = await getForecastWeather(coordinates.coordinates.lat, coordinates.coordinates.lng, units);
-        setForecastData(forecastResult.data.hourly)
-        console.log("forecast " + forecastdata)
+        if (coordinates.coordinates) {
+            console.log(coordinates.coordinates.lat, coordinates.coordinates.lng)
+            const res = await liveLocation(coordinates.coordinates.lat, coordinates.coordinates.lng, units)
+            setResult(res.data);
+            console.log("current weather:" + result)
+            const forecastResult = await getForecastWeather(coordinates.coordinates.lat, coordinates.coordinates.lng, units);
+            setForecastData(forecastResult.data.hourly)
+            console.log("forecast " + forecastdata)
+        }
 
     }, [coordinates, units])
 
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await getCurrentWeather(location);
+        const response = await getCurrentWeather(location, units);
         const lati = response.data.coord.lat;
         const longi = response.data.coord.lon;
-        const forecastResult = await getForecastWeather(lati, longi);
+        const forecastResult = await getForecastWeather(lati, longi, units);
         setResult(response.data);
         setForecastData(forecastResult.data.hourly)
         console.log("current weather:" + result);
@@ -85,7 +86,8 @@ function Application() {
                 windspeed={result.wind.speed}
                 units={units}
             />}
-            {coordinates.loaded ? JSON.stringify(coordinates) : "not"}
+            {coordinates.loaded ? "" : <h2>Needs to Access your Location</h2>}
+            {coordinates.error ? <h3>Denied access for Location</h3> : ""}
             <ForeCastWeather forecast={forecastdata} units={units} />
         </div>
     )
